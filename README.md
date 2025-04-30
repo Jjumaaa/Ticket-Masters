@@ -1,70 +1,128 @@
-# Getting Started with Create React App
+# **Ticket Management App (React + Material UI)**  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A **React-based** ticket management system built with **Material-UI (MUI)** for styling and **React Router** for navigation. This app allows users to:  
+✔ **Create** new support tickets  
+✔ **View** all tickets in a list  
+✔ **Edit** existing tickets  
+✔ **Delete** tickets  
+✔ **Filter** by priority/status  
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## **📥 Installation & Setup**  
 
-### `npm start`
+### **1. Clone the Repository**  
+```bash
+git clone git@github.com:Jjumaaa/Ticket-Masters.git
+cd Ticket-Masters
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### **2. Install Dependencies**  
+```bash
+npm install
+npm install react-router-dom uuid @mui/material @mui/icons-material @emotion/react @emotion/styled
+```
+*(Installs React, Material-UI, React Router, and other required packages.)*  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### **3. Run the App**  
+```bash
+npm start
+```
+- Runs on `http://localhost:3000`  
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **🚀 Features**  
 
-### `npm run build`
+### **1. Home Page (`/`)**  
+- Displays a welcome message.  
+- Navigation links to **Tickets** and **New Ticket** pages.  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **2. Tickets List (`/tickets`)**  
+📋 **Displays all tickets** in a card-based layout.  
+- Each ticket shows:  
+  - **Title**  
+  - **Description**  
+  - **Priority** (High/Medium/Low)  
+  - **Status** (Open/In Progress/Resolved)  
+  - **Creation Date**  
+- **Edit Button** (✏️) to modify tickets  
+- **Delete Button** (🗑️) to remove tickets  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **3. Create/Edit Tickets (`/new-ticket` and `/edit-ticket/:id`)**  
+✏ **A unified form for both creating and editing tickets** with:  
+- **Title** (Required)  
+- **Description** (Required)  
+- **Priority** (Dropdown: High/Medium/Low)  
+- **Status** (Dropdown: Open/In Progress/Resolved)  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+📌 **All changes are saved in `localStorage`** (persists on page refresh).  
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## **⚙️ Technical Details**  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **Folder Structure**  
+```
+src/
+├── components/       # Reusable UI components
+│   ├── TicketList.js # Displays all tickets
+│   ├── TicketForm.js # Unified form for create/edit
+│   ├── TicketItem.js # Single ticket card
+│   └── Navbar.js     # Navigation bar
+│
+├── pages/            # Main pages
+│   ├── Home.js       # Landing page
+│   ├── Tickets.js    # Ticket list page
+│   ├── NewTicket.js  # New ticket form
+│   └── EditTicket.js # Edit existing tickets (NEW)
+│
+├── styles/           # Theming & global CSS
+│   └── theme.js      # MUI theme config
+│
+├── App.js            # Main app router
+└── index.js          # React entry point
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## **🔧 Customization**  
 
-## Learn More
+### **1. Change Theme Colors**  
+Edit `src/styles/theme.js`:  
+```js
+const theme = createTheme({
+  palette: {
+    primary: { main: '#1976d2' },
+    secondary: { main: '#dc004e' },
+  },
+});
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **2. Add New Ticket Statuses**  
+Modify `TicketForm.js` to include new options:  
+```jsx
+<Select value={status} onChange={(e) => setStatus(e.target.value)}>
+  <MenuItem value="open">Open</MenuItem>
+  <MenuItem value="in-progress">In Progress</MenuItem>
+  <MenuItem value="resolved">Resolved</MenuItem>
+  <MenuItem value="rejected">Rejected</MenuItem>
+  <MenuItem value="on-hold">On Hold</MenuItem> {/* New status */}
+</Select>
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## **📌 Future Improvements**  
+- **User Authentication** (Firebase Auth / JWT)  
+- **Search & Filtering** (Filter by priority/status)  
+- **Real-time Updates** (WebSockets / Firebase)  
+- **Ticket History** (Track changes over time)  
 
-### Code Splitting
+---
+## **🙋‍♂️ Need Help?**  
+Open an issue or contact me! 🚀  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### **🎉 Enjoy the Ticket App!**  
+Run `npm start` and start managing tickets! 🎫
+```

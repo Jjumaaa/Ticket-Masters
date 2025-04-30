@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Tickets from './pages/Tickets';
+import NewTicket from './pages/NewTicket';
+import EditTicket from './pages/EditTicket';
+import theme from './styles/theme';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tickets" element={<Tickets />} />
+          <Route path="/new-ticket" element={<NewTicket />} />
+          <Route path="/edit-ticket/:id" element={<EditTicket />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
